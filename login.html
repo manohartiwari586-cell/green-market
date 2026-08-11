@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Market | Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(rgba(0,80,0,.55),rgba(0,80,0,.55)),
+    url("images/bg.jpg") center/cover no-repeat;
+}
+
+.login-box{
+
+    width:380px;
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+}
+
+.logo{
+
+    text-align:center;
+    font-size:38px;
+
+}
+
+h2{
+
+    text-align:center;
+    color:#1b5e20;
+    margin-top:10px;
+    margin-bottom:5px;
+
+}
+
+p{
+
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+
+}
+
+label{
+
+    display:block;
+    margin-bottom:6px;
+    color:#1b5e20;
+    font-weight:bold;
+
+}
+
+input{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #bbb;
+    border-radius:8px;
+    margin-bottom:18px;
+    font-size:16px;
+
+}
+
+input:focus{
+
+    outline:none;
+    border:2px solid #2e7d32;
+
+}
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box input{
+
+    margin-bottom:10px;
+
+}
+
+.show-btn{
+
+    position:absolute;
+    right:12px;
+    top:12px;
+    cursor:pointer;
+    color:#2e7d32;
+    font-size:14px;
+
+}
+
+.options{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    font-size:14px;
+
+}
+
+.options a{
+
+    text-decoration:none;
+    color:#1b5e20;
+
+}
+
+button{
+
+    width:100%;
+    padding:13px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#1b5e20;
+
+}
+
+.signup{
+
+    text-align:center;
+    margin-top:20px;
+
+}
+
+.signup a{
+
+    text-decoration:none;
+    color:#1b5e20;
+    font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<div class="logo">🌿</div>
+
+<h2>Green Market</h2>
+
+<p>Login to continue shopping</p>
+
+<label>Username</label>
+
+<input
+type="text"
+id="username"
+placeholder="Enter Username">
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<span
+class="show-btn"
+id="showPassword">
+
+Show
+
+</span>
+
+</div>
+
+<div class="options">
+
+<label>
+
+<input
+type="checkbox"
+style="width:auto;">
+
+Remember Me
+
+</label>
+
+<a href="#">Forgot Password?</a>
+
+</div>
+
+<button id="loginBtn">
+
+🔐 Login
+
+</button>
+
+<div class="signup">
+
+Don't have an account?
+
+<a href="register.html">Create Account</a>
+
+</div>
+
+</div>
+<script>
+
+// Show / Hide Password
+
+const password=document.getElementById("password");
+const showBtn=document.getElementById("showPassword");
+
+showBtn.onclick=function(){
+
+if(password.type==="password"){
+
+password.type="text";
+showBtn.innerHTML="Hide";
+
+}
+else{
+
+password.type="password";
+showBtn.innerHTML="Show";
+
+}
+
+};
+
+// Login
+
+document.getElementById("loginBtn").onclick=function(){
+
+let username=document.getElementById("username").value.trim();
+let passwordValue=document.getElementById("password").value.trim();
+
+if(username=="" || passwordValue==""){
+
+alert("⚠️ Please enter Username and Password");
+return;
+
+}
+
+// Save User Name
+localStorage.setItem("userName",username);
+
+// Login Success
+alert("✅ Login Successful!\nWelcome "+username);
+
+window.location.href="home.html";
+
+};
+
+</script>
+<script src="login.js"></script>
+</body>
+</html>

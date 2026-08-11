@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Today's Deals - Green Market</title>
+
+    <link rel="stylesheet" href="today.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            🌿 Green Market
+        </div>
+
+        <a href="index.html" class="home-btn">
+            🏠 Home
+        </a>
+
+    </header>
+
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <div>
+            <h1>🔥 Today's Deals</h1>
+
+            <p>
+                Fresh products at special prices!
+            </p>
+
+            <div class="timer">
+                Deal ends in:
+                <span id="timer">00:00:00</span>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Deals -->
+    <section class="deals-section">
+
+        <h2>🔥 Best Deals Today</h2>
+
+        <div class="deals-container">
+
+
+            <!-- Tomato -->
+            <div class="deal-card">
+
+                <div class="discount">
+                    20% OFF
+                </div>
+
+                <img src="images/tomato.png" alt="Tomato">
+
+                <h3>Fresh Tomato</h3>
+
+                <p class="old-price">₹60 / kg</p>
+
+                <p class="price">₹48 / kg</p>
+
+                <button class="cart-btn"
+                    onclick="addToCart('Fresh Tomato','₹48 / kg','images/tomato.png')">
+
+                    🛒 Add To Cart
+
+                </button>
+
+            </div>
+
+
+            <!-- Apple -->
+            <div class="deal-card">
+
+                <div class="discount">
+                    15% OFF
+                </div>
+
+                <img src="images/apple.png" alt="Apple">
+
+                <h3>Fresh Apple</h3>
+
+                <p class="old-price">₹200 / kg</p>
+
+                <p class="price">₹170 / kg</p>
+
+                <button class="cart-btn"
+                    onclick="addToCart('Fresh Apple','₹170 / kg','images/apple.png')">
+
+                    🛒 Add To Cart
+
+                </button>
+
+            </div>
+
+
+            <!-- Potato -->
+            <div class="deal-card">
+
+                <div class="discount">
+                    25% OFF
+                </div>
+
+                <img src="images/potato.png" alt="Potato">
+
+                <h3>Fresh Potato</h3>
+
+                <p class="old-price">₹40 / kg</p>
+
+                <p class="price">₹30 / kg</p>
+
+                <button class="cart-btn"
+                    onclick="addToCart('Fresh Potato','₹30 / kg','images/potato.png')">
+
+                    🛒 Add To Cart
+
+                </button>
+
+            </div>
+
+
+            <!-- Milk -->
+            <div class="deal-card">
+
+                <div class="discount">
+                    10% OFF
+                </div>
+
+                <img src="images/milk.png" alt="Milk">
+
+                <h3>Fresh Milk</h3>
+
+                <p class="old-price">₹60 / L</p>
+
+                <p class="price">₹54 / L</p>
+
+                <button class="cart-btn"
+                    onclick="addToCart('Fresh Milk','₹54 / L','images/milk.png')">
+
+                    🛒 Add To Cart
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Back -->
+    <div class="bottom-area">
+
+        <a href="products.html" class="products-btn">
+            🛍️ View All Products
+        </a>
+
+    </div>
+
+
+    <script src="today.js"></script>
+
+</body>
+
+</html>

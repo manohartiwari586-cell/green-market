@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background: #b0a531;
+background: linear-gradient(90deg, rgba(176, 165, 49, 1) 0%,
+ rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+}
+
+.container{
+width:90%;
+max-width:500px;
+margin:30px auto;
+background:rgba(255,255,255,.95);
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,.3);
+}
+
+h1{
+text-align:center;
+color:darkgreen;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input,select,textarea{
+
+width:100%;
+padding:12px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+box-sizing:border-box;
+
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+button{
+
+width:100%;
+padding:15px;
+margin-top:20px;
+background:darkgreen;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:green;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Contact Us</h1>
+
+<form onsubmit="sendMessage(event)">
+
+<label>Name</label>
+<input type="text" required>
+
+<label>Mobile Number</label>
+<input type="tel" maxlength="10" required>
+
+<label>Email</label>
+<input type="email">
+
+<label>City</label>
+<select required>
+
+<option value="">Select City</option>
+<option>Karad</option>
+<option>Satara</option>
+<option>Pune</option>
+<option>Sangli</option>
+<option>Kolhapur</option>
+
+</select>
+
+<label>Purpose</label>
+
+<select required>
+
+<option value="">Select Purpose</option>
+<option>Order</option>
+<option>Complaint</option>
+<option>Suggestion</option>
+<option>General Enquiry</option>
+
+</select>
+
+<label>Message</label>
+
+<textarea placeholder="Write your message here..."></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+function sendMessage(event){
+
+event.preventDefault();
+
+alert("✅ Message Sent Successfully!");
+
+event.target.reset();
+
+}
+
+</script>
+
+</body>
+</html>
