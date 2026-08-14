@@ -327,9 +327,9 @@ header{
 
 position:fixed;
 
-bottom:20px;
+bottom:90px;
 
-right:20px;
+right:25px;
 
 width:65px;
 
@@ -395,4 +395,27 @@ font-size:13px;
 
 font-weight:bold;
 
+}
+.flower {
+    position: fixed;
+    top: -50px;
+
+    z-index: 999999;
+
+    pointer-events: none;
+
+    animation: flowerFall 4s linear forwards;
+}
+
+@keyframes flowerFall {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }

@@ -7,6 +7,7 @@
 <title>Green Market - Products</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chatbot.css">
 </head>
 
 <body>
@@ -323,6 +324,77 @@ data-image="images/milk.png">
 🛒
 <span id="floatingCount">0</span>
 </a>
+<!-- ================= CHATBOT ================= -->
 
+<button id="chatbotBtn" class="chatbot-btn">💬</button>
+
+<div id="chatbot" class="chatbot">
+
+    <!-- Header -->
+    <div class="chat-header">
+
+        <div>
+            <h3>🤖 GreenBot</h3>
+            <span>Online • Green Market</span>
+        </div>
+
+        <button id="closeChat">✕</button>
+
+    </div>
+
+
+    <!-- Messages -->
+    <div id="chatMessages" class="chat-messages">
+
+        <div class="bot-message">
+            👋 Hello! Welcome to Green Market.<br>
+            How can I help you?
+        </div>
+
+    </div>
+
+
+    <!-- Quick Buttons -->
+    <div class="quick-buttons">
+
+        <button onclick="quickMessage('Products')">
+            🛍️ Products
+        </button>
+
+        <button onclick="quickMessage('Deals')">
+            🔥 Deals
+        </button>
+
+        <button onclick="quickMessage('Cart')">
+            🛒 Cart
+        </button>
+
+        <button onclick="quickMessage('Payment')">
+            💳 Payment
+        </button>
+
+    </div>
+
+
+    <!-- Input -->
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message..."
+        >
+
+        <button id="sendBtn">➤</button>
+
+    </div>
+
+</div>
+
+<!-- ================= END CHATBOT ================= -->
+
+
+<script src="chatbot.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>

@@ -312,3 +312,4 @@ localStorage.setItem("wishlist", JSON.stringify(wishlist));
 });
 
 });
+

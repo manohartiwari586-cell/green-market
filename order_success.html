@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order Successful</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chatbot.css">
 
 <style>
 
@@ -75,6 +77,7 @@ background:#1b5e20;
 
 }
 
+
 </style>
 
 </head>
@@ -90,6 +93,7 @@ background:#1b5e20;
 <p>Thank you for shopping with Green Market.</p>
 
 <p>Your order will be delivered soon.</p>
+<div class="flower"></div>
 
 <h3 id="orderId"></h3>
 
@@ -100,14 +104,111 @@ Continue Shopping
 </button>
 
 </div>
-
 <script>
-
 let orderId=localStorage.getItem("orderId");
 
 document.getElementById("orderId").innerHTML="Order ID : "+orderId;
+</script>
+<script>
+function showFlowerPopup() {
 
+    const flowers = ["🌸", "🌺", "🌼", "🌷", "💮", "🌹"];
+
+    for (let i = 0; i < 25; i++) {
+
+        const flower = document.createElement("div");
+
+        flower.className = "flower";
+
+        flower.innerText =
+            flowers[Math.floor(Math.random() * flowers.length)];
+
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration =
+            (2 + Math.random() * 2) + "s";
+
+        flower.style.fontSize =
+            (20 + Math.random() * 20) + "px";
+
+        document.body.appendChild(flower);
+
+        setTimeout(function() {
+            flower.remove();
+        }, 4000);
+    }
+}
 </script>
 
+<script src="script.js"></script>
+<!-- ================= CHATBOT ================= -->
+
+<button id="chatbotBtn" class="chatbot-btn">💬</button>
+
+<div id="chatbot" class="chatbot">
+
+    <!-- Header -->
+    <div class="chat-header">
+
+        <div>
+            <h3>🤖 GreenBot</h3>
+            <span>Online • Green Market</span>
+        </div>
+
+        <button id="closeChat">✕</button>
+
+    </div>
+
+
+    <!-- Messages -->
+    <div id="chatMessages" class="chat-messages">
+
+        <div class="bot-message">
+            👋 Hello! Welcome to Green Market.<br>
+            How can I help you?
+        </div>
+
+    </div>
+
+
+    <!-- Quick Buttons -->
+    <div class="quick-buttons">
+
+        <button onclick="quickMessage('Products')">
+            🛍️ Products
+        </button>
+
+        <button onclick="quickMessage('Deals')">
+            🔥 Deals
+        </button>
+
+        <button onclick="quickMessage('Cart')">
+            🛒 Cart
+        </button>
+
+        <button onclick="quickMessage('Payment')">
+            💳 Payment
+        </button>
+
+    </div>
+
+
+    <!-- Input -->
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message..."
+        >
+
+        <button id="sendBtn">➤</button>
+
+    </div>
+
+</div>
+
+<!-- ================= END CHATBOT ================= -->
+
+<script src="chatbot.js"></script>
 </body>
 </html>
