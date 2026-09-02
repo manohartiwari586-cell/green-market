@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Green Market - Feedback</title>
+
+    <link rel="stylesheet" href="feedback.css">
+</head>
+
+<body>
+
+    <div class="feedback-container">
+
+        <div class="feedback-card">
+
+            <div class="feedback-icon">
+                ⭐
+            </div>
+
+            <h1>Give Your Feedback</h1>
+
+            <p class="subtitle">
+                We would love to hear about your experience with Green Market.
+            </p>
+
+            <!-- Rating -->
+            <h3>How was your experience?</h3>
+
+            <div class="rating">
+                <span onclick="setRating(1)">★</span>
+                <span onclick="setRating(2)">★</span>
+                <span onclick="setRating(3)">★</span>
+                <span onclick="setRating(4)">★</span>
+                <span onclick="setRating(5)">★</span>
+            </div>
+
+            <p id="ratingText">Select your rating</p>
+
+            <!-- Feedback -->
+            <textarea 
+            id="feedback" 
+            placeholder="Tell us what you think..."></textarea>
+
+            <!-- Name -->
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name (Optional)">
+                <!-- Feedback Type -->
+            <label for="feedbackType">Feedback Type</label>
+
+            <select id="feedbackType">
+            <option value="">Select Feedback Type</option>
+            <option value="Product / Quantity">📦 Product / Quantity</option>
+            <option value="Delivery">🚚 Delivery</option>
+            <option value="Website Experience">💻 Website Experience</option>
+            <option value="Customer Service">🎧 Customer Service</option>
+            <option value="Other">✏️ Other</option>
+            </select>
+
+            <!-- Submit -->
+            <button class="submit-btn" onclick="submitFeedback()">
+                Submit Feedback
+            </button>
+
+            <button class="back-btn" onclick="goBack()">
+                ← Back to Shopping
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="feedback.js"></script>
+
+</body>
+</html>

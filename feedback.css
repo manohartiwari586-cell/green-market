@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e8fff6, #f7fffb);
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+/* Main Container */
+
+.feedback-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+
+/* Feedback Card */
+
+.feedback-card {
+    background: #ffffff;
+
+    padding: 35px 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 35px rgba(32, 180, 134, 0.15);
+
+    animation: cardAppear 0.5s ease;
+}
+
+
+/* Animation */
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Icon */
+
+.feedback-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 15px;
+
+    background: #e8fff6;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+}
+
+
+/* Heading */
+
+.feedback-card h1 {
+    color: #20b486;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+
+.subtitle {
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+/* Question */
+
+.feedback-card h3 {
+    color: #333;
+
+    font-size: 17px;
+
+    margin-bottom: 12px;
+}
+
+
+/* Stars */
+
+.rating {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 5px;
+}
+
+
+.rating span {
+    font-size: 40px;
+
+    color: #d6d6d6;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.rating span:hover {
+    transform: scale(1.15);
+
+    color: #ffc107;
+}
+
+
+.rating span.active {
+    color: #ffc107;
+}
+
+
+#ratingText {
+    color: #888;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+
+/* Textarea */
+
+textarea {
+    width: 100%;
+
+    height: 120px;
+
+    padding: 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    resize: none;
+
+    font-size: 14px;
+
+    font-family: Arial;
+
+    margin-bottom: 15px;
+
+    transition: 0.3s;
+}
+
+
+textarea:focus {
+    border-color: #20b486;
+
+    box-shadow: 0 0 0 3px rgba(32, 180, 134, 0.1);
+}
+
+
+/* Name Input */
+
+#name {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+#name:focus {
+    border-color: #20b486;
+}
+
+
+/* Submit Button */
+
+.submit-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #20b486;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.submit-btn:hover {
+    background: #17966f;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(32, 180, 134, 0.25);
+}
+
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* Back Button */
+
+.back-btn {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 10px;
+
+    border: 2px solid #20b486;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #20b486;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.back-btn:hover {
+    background: #e8fff6;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .feedback-card {
+        padding: 28px 20px;
+    }
+
+    .feedback-card h1 {
+        font-size: 24px;
+    }
+
+    .rating span {
+        font-size: 34px;
+    }
+
+}
+/* Feedback Type */
+
+.feedback-card label {
+    display: block;
+    text-align: left;
+
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+#feedbackType {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #555;
+
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    margin-bottom: 15px;
+
+    transition: 0.3s;
+}
+
+#feedbackType:focus {
+    border-color: #20b486;
+
+    box-shadow: 0 0 0 3px rgba(32, 180, 134, 0.1);
+}

@@ -103,6 +103,11 @@ Continue Shopping
 
 </button>
 
+
+<button class="feedback-btn" onclick="openFeedback()">
+    ⭐ Give Feedback
+</button>
+
 </div>
 <script>
 let orderId=localStorage.getItem("orderId");
@@ -136,6 +141,9 @@ function showFlowerPopup() {
             flower.remove();
         }, 4000);
     }
+}
+function openFeedback() {
+    window.location.href = "feedback.html";
 }
 </script>
 
