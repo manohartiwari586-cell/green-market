@@ -3,220 +3,447 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Successful</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="chatbot.css">
+<title>Green Market - Order Successful</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:#f4fff4;
-
+body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at center, #ffffff, #e7f5df, #d4ebca);
+    color: #174d26;
+    overflow-x: hidden;
 }
 
-.card{
-
-background:white;
-padding:40px;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.2);
-text-align:center;
-max-width:450px;
-
+header {
+    background: linear-gradient(110deg, #064b16, #16802b);
+    color: white;
+    padding: 20px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 15px #164b2030;
 }
 
-.icon{
-
-font-size:80px;
-
+.logo {
+    font-size: 30px;
+    font-weight: bold;
 }
 
-h1{
-
-color:#2e7d32;
-margin:15px 0;
-
+.tagline {
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
-p{
-
-font-size:18px;
-color:#555;
-margin:10px 0;
-
+main {
+    width: 100%;
+    max-width: 900px;
+    margin: 220px auto 45px;
+    padding: 20px;
 }
 
-button{
-
-margin-top:20px;
-padding:15px 30px;
-background:#2e7d32;
-color:white;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-size:18px;
-
+.success-card {
+    position: relative;
+    text-align: center;
+    background: rgba(255,255,255,.90);
+    border-radius: 22px;
+    padding: 110px 35px 45px;
+    box-shadow: 0 15px 45px #285b2930;
+    animation: cardIn .8s ease-out both;
 }
 
-button:hover{
-
-background:#1b5e20;
-
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
+.flower-bouquet {
+    position: absolute;
+    top: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 440px;
+    max-width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
 
+.leaves {
+    position: absolute;
+    font-size: 100px;
+    filter: drop-shadow(0 5px 4px #326b2920);
+}
+
+.leaves.left {
+    transform: rotate(-35deg);
+    left: 4%;
+    top: 95px;
+}
+
+.leaves.right {
+    transform: rotate(35deg);
+    right: 4%;
+    top: 90px;
+}
+
+.flower {
+    position: absolute;
+    font-size: 72px;
+    filter: drop-shadow(0 5px 5px #3332);
+    animation: flowerPop .8s cubic-bezier(.2,1.5,.5,1) both;
+}
+
+.flower.f1 { left: 14%; top: 85px; font-size: 57px; }
+.flower.f2 { left: 30%; top: 35px; font-size: 65px; animation-delay: .1s; }
+.flower.f3 { left: 42%; top: 90px; font-size: 78px; animation-delay: .2s; }
+.flower.f4 { right: 27%; top: 38px; font-size: 66px; animation-delay: .3s; }
+.flower.f5 { right: 9%; top: 95px; font-size: 58px; animation-delay: .4s; }
+.flower.f6 { left: 33%; top: 125px; font-size: 43px; animation-delay: .2s; }
+.flower.f7 { right: 35%; top: 125px; font-size: 45px; animation-delay: .35s; }
+
+@keyframes flowerPop {
+    from { opacity: 0; transform: scale(.2) rotate(-30deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.check-circle {
+    width: 145px;
+    height: 145px;
+    margin: -8px auto 20px;
+    position: relative;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #60c957, #16882c);
+    border: 9px solid white;
+    box-shadow: 0 0 0 4px #e5f6e1, 0 10px 25px #277d2b30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: checkIn .7s .3s backwards;
+    z-index: 2;
+}
+
+.check-circle span {
+    color: white;
+    font-size: 80px;
+    font-weight: bold;
+}
+
+@keyframes checkIn {
+    from { transform: scale(0) rotate(-45deg); }
+    to { transform: scale(1) rotate(0); }
+}
+
+.ribbon {
+    display: inline-block;
+    background: #42a943;
+    color: white;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: bold;
+    padding: 20px 30px;
+    margin: 0 auto 22px;
+    border-radius: 5px;
+    box-shadow: 0 6px 15px #28822a20;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 5px 0 15px;
+}
+
+.message {
+    color: #365b5a;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.order-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    background: #edf7e9;
+    border-radius: 16px;
+    margin: 28px 0;
+    padding: 25px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.info-icon {
+    background: #d6ebd0;
+    border-radius: 50%;
+    min-width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+}
+
+.info-label {
+    color: #42664a;
+    margin-bottom: 8px;
+}
+
+.info-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #14662a;
+    overflow-wrap: anywhere;
+}
+
+.actions {
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 40px;
+    padding: 17px;
+    margin-top: 15px;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-home {
+    color: white;
+    background: linear-gradient(100deg, #075d1c, #168c30);
+}
+
+.btn-shop {
+    color: #17612a;
+    border: 2px solid #287a3a;
+    background: transparent;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 18px;
+    margin: 55px 0 35px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 16px;
+}
+
+.feature span {
+    font-size: 28px;
+}
+
+.footer {
+    text-align: center;
+    font-style: italic;
+    padding-bottom: 25px;
+}
+
+.petal {
+    position: fixed;
+    top: -40px;
+    z-index: 5;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translate3d(0, -30px, 0) rotate(0);
+        opacity: 0;
+    }
+    10% { opacity: .9; }
+    100% {
+        transform: translate3d(var(--drift), 110vh, 0) rotate(650deg);
+        opacity: .7;
+    }
+}
+
+@media (max-width: 600px) {
+    header { justify-content: center; text-align: center; }
+    .logo { font-size: 25px; }
+    .tagline { font-size: 13px; }
+    main { margin-top: 190px; padding: 12px; }
+    .success-card { padding: 85px 18px 28px; }
+    .flower-bouquet { top: -205px; height: 250px; }
+    .flower { font-size: 52px; }
+    .leaves { font-size: 65px; }
+    .check-circle { width: 112px; height: 112px; }
+    .check-circle span { font-size: 60px; }
+    .ribbon { padding: 16px 12px; }
+    h2 { font-size: 20px; }
+    .message { font-size: 15px; }
+    .order-info { padding: 15px 10px; gap: 10px; }
+    .info-item { gap: 8px; flex-direction: column; text-align: center; }
+    .info-icon { min-width: 45px; height: 45px; font-size: 23px; }
+    .info-value { font-size: 17px; }
+    .info-label { font-size: 13px; }
+    .features { margin-top: 35px; }
+}
+.btn-feedback {
+    color: #17612a;
+    background: #fff8df;
+    border: 2px solid #e5bb45;
+}
+
+.btn-feedback:hover {
+    background: #ffefb0;
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="card">
+<header>
+    <div class="logo">🌿 Green Market</div>
+    <div class="tagline">Fresh &nbsp; • &nbsp; Healthy &nbsp; • &nbsp; Together</div>
+</header>
 
-<div class="icon">✅</div>
+<main>
+    <section class="success-card">
 
-<h1>Order Placed Successfully!</h1>
-
-<p>Thank you for shopping with Green Market.</p>
-
-<p>Your order will be delivered soon.</p>
-<div class="flower"></div>
-
-<h3 id="orderId"></h3>
-
-<button onclick="window.location.href='products.html'">
-
-Continue Shopping
-
-</button>
-
-
-<button class="feedback-btn" onclick="openFeedback()">
-    ⭐ Give Feedback
-</button>
-
-</div>
-<script>
-let orderId=localStorage.getItem("orderId");
-
-document.getElementById("orderId").innerHTML="Order ID : "+orderId;
-</script>
-<script>
-function showFlowerPopup() {
-
-    const flowers = ["🌸", "🌺", "🌼", "🌷", "💮", "🌹"];
-
-    for (let i = 0; i < 25; i++) {
-
-        const flower = document.createElement("div");
-
-        flower.className = "flower";
-
-        flower.innerText =
-            flowers[Math.floor(Math.random() * flowers.length)];
-
-        flower.style.left = Math.random() * 100 + "vw";
-        flower.style.animationDuration =
-            (2 + Math.random() * 2) + "s";
-
-        flower.style.fontSize =
-            (20 + Math.random() * 20) + "px";
-
-        document.body.appendChild(flower);
-
-        setTimeout(function() {
-            flower.remove();
-        }, 4000);
-    }
-}
-function openFeedback() {
-    window.location.href = "feedback.html";
-}
-</script>
-
-<script src="script.js"></script>
-<!-- ================= CHATBOT ================= -->
-
-<button id="chatbotBtn" class="chatbot-btn">💬</button>
-
-<div id="chatbot" class="chatbot">
-
-    <!-- Header -->
-    <div class="chat-header">
-
-        <div>
-            <h3>🤖 GreenBot</h3>
-            <span>Online • Green Market</span>
+        <div class="flower-bouquet" aria-hidden="true">
+            <div class="leaves left">🌿</div>
+            <div class="leaves right">🌿</div>
+            <div class="flower f1">🌼</div>
+            <div class="flower f2">🌸</div>
+            <div class="flower f3">🌺</div>
+            <div class="flower f4">🌼</div>
+            <div class="flower f5">🌸</div>
+            <div class="flower f6">🌷</div>
+            <div class="flower f7">🌼</div>
         </div>
 
-        <button id="closeChat">✕</button>
-
-    </div>
-
-
-    <!-- Messages -->
-    <div id="chatMessages" class="chat-messages">
-
-        <div class="bot-message">
-            👋 Hello! Welcome to Green Market.<br>
-            How can I help you?
+        <div class="check-circle">
+            <span>✓</span>
         </div>
 
-    </div>
+        <div class="ribbon">Order Placed Successfully!</div>
 
+        <h2>Thank you for shopping with Green Market!</h2>
 
-    <!-- Quick Buttons -->
-    <div class="quick-buttons">
+        <p class="message">
+            Your order has been placed and is being processed.<br>
+            You will receive a confirmation message shortly.
+        </p>
 
-        <button onclick="quickMessage('Products')">
-            🛍️ Products
-        </button>
+        <div class="order-info">
+            <div class="info-item">
+                <div class="info-icon">📄</div>
+                <div>
+                    <div class="info-label">Order ID</div>
+                    <div class="info-value" id="orderId">--</div>
+                </div>
+            </div>
 
-        <button onclick="quickMessage('Deals')">
-            🔥 Deals
-        </button>
+            <div class="info-item">
+                <div class="info-icon">🗓️</div>
+                <div>
+                    <div class="info-label">Order Total</div>
+                    <div class="info-value" id="orderTotal">₹0.00</div>
+                </div>
+            </div>
+        </div>
 
-        <button onclick="quickMessage('Cart')">
-            🛒 Cart
-        </button>
+       <div class="actions">
+    <a href="home.html" class="btn btn-home">
+        ⌂ &nbsp; Go to Home
+    </a>
 
-        <button onclick="quickMessage('Payment')">
-            💳 Payment
-        </button>
+    <a href="products.html" class="btn btn-shop">
+        🛍️ &nbsp; Continue Shopping
+    </a>
 
-    </div>
-
-
-    <!-- Input -->
-    <div class="chat-input">
-
-        <input
-            type="text"
-            id="userInput"
-            placeholder="Type your message..."
-        >
-
-        <button id="sendBtn">➤</button>
-
-    </div>
-
+    <a href="feedback.html" class="btn btn-feedback">
+        ⭐ &nbsp; Give Feedback
+    </a>
 </div>
+    </section>
 
-<!-- ================= END CHATBOT ================= -->
+    <div class="features">
+        <div class="feature"><span>🌿</span> Fresh Products</div>
+        <div class="feature"><span>🛡️</span> Secure Payment</div>
+        <div class="feature"><span>🚚</span> Fast Delivery</div>
+    </div>
 
-<script src="chatbot.js"></script>
+    <div class="footer">
+        — &nbsp; Together for a Greener Tomorrow 🌱 &nbsp; —
+    </div>
+</main>
+
+<script>
+const savedOrderId = localStorage.getItem("orderId");
+const savedTotal = localStorage.getItem("orderTotal");
+
+document.getElementById("orderId").textContent =
+    savedOrderId || "GM-000000";
+
+document.getElementById("orderTotal").textContent =
+    "₹" + (Number(savedTotal) || 0).toFixed(2);
+
+// Falling flower petals
+const petalSymbols = ["🌸", "🌺", "🌷", "🌼", "✿"];
+
+function createPetal() {
+    const petal = document.createElement("span");
+    petal.className = "petal";
+    petal.textContent =
+        petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (14 + Math.random() * 16) + "px";
+    petal.style.setProperty(
+        "--drift",
+        (Math.random() * 180 - 90) + "px"
+    );
+
+    const duration = 5 + Math.random() * 5;
+    petal.style.animationDuration = duration + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), duration * 1000);
+}
+
+for (let i = 0; i < 18; i++) {
+    setTimeout(createPetal, i * 180);
+}
+
+setInterval(createPetal, 450);
+</script>
+
 </body>
 </html>
