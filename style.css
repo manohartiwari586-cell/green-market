@@ -214,33 +214,39 @@ header{
 .logo{
     margin-bottom:10px;
 }
-.card{
-    position:relative;
+/* Wishlist Heart - PC + Mobile */
+
+.card,
+.product-card {
+    position: relative;
 }
 
-.wishlist{
-    position:absolute;
-    top:12px;
-    right:12px;
-    width:40px;
-    height:40px;
-    background:white;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:24px;
-    cursor:pointer;
-    box-shadow:0 2px 8px rgba(0,0,0,.2);
-    transition:.3s;
+.wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 20;
+    pointer-events: auto;
+    user-select: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
 }
 
-.wishlist:hover{
-    transform:scale(1.1);
+.wishlist:hover {
+    transform: scale(1.1);
 }
 
-.wishlist.active{
-    color:red;
+.wishlist.active {
+    color: red;
 }
 }
 .badge{
@@ -417,5 +423,122 @@ font-weight:bold;
     100% {
         transform: translateY(110vh) rotate(360deg);
         opacity: 0;
+    }
+}
+/* Wishlist Heart Cursor Fix */
+.wishlist {
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.wishlist:hover {
+    cursor: pointer !important;
+}
+/* GREEN MARKET AMAZON-STYLE SLIDER */
+
+/* GREEN MARKET SLIDER FIX */
+
+.gm-slider {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    overflow: hidden;
+    background: #e8f5e9;
+}
+
+.gm-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.gm-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.gm-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.gm-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+    object-position: center;
+}
+
+.gm-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 7%;
+    transform: translateY(-50%);
+    z-index: 2;
+    max-width: 45%;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #1b5e20;
+}
+
+.gm-banner-text h2 {
+    font-size: 30px;
+    margin: 0 0 10px;
+}
+
+.gm-banner-text p {
+    font-size: 17px;
+    margin: 0;
+}
+
+.gm-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 45px;
+    height: 60px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #1b5e20;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.gm-prev {
+    left: 15px;
+}
+
+.gm-next {
+    right: 15px;
+}
+
+@media (max-width: 768px) {
+    .gm-slider {
+        height: 240px;
+    }
+
+    .gm-banner-text {
+        left: 7%;
+        max-width: 65%;
+        padding: 12px;
+    }
+
+    .gm-banner-text h2 {
+        font-size: 20px;
+    }
+
+    .gm-banner-text p {
+        font-size: 13px;
     }
 }

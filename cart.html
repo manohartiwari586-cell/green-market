@@ -1,355 +1,343 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping Cart</title>
-<link rel="stylesheet" href="chatbot.css">
+<title>Shopping Cart - Green Market</title>
+
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-background:#f4f6f4;
+body {
+    background: #f4f6f4;
 }
 
-header{
-background:#1b5e20;
-color:white;
-padding:18px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
+header {
+    background: #1b5e20;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.container{
-width:90%;
-max-width:900px;
-margin:25px auto;
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 25px auto;
 }
 
-.cart-item{
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-background:white;
-
-padding:15px;
-
-margin-bottom:20px;
-
-border-radius:12px;
-
-box-shadow:0 4px 10px rgba(0,0,0,.15);
-
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
 }
 
-.cart-item img{
-
-width:90px;
-
-height:90px;
-
-border-radius:10px;
-
-object-fit:cover;
-
+.cart-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
-.details{
-
-flex:1;
-
-margin-left:20px;
-
+.details {
+    flex: 1;
+    margin-left: 10px;
 }
 
-.details h3{
-
-color:#1b5e20;
-
-margin-bottom:8px;
-
+.details h3 {
+    color: #1b5e20;
+    margin-bottom: 8px;
 }
 
-.price{
-
-font-size:20px;
-
-color:red;
-
-font-weight:bold;
-
-margin-bottom:10px;
-
+.price {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
 }
 
-.qty button{
-
-width:30px;
-
-height:30px;
-
-border:none;
-
-background:#2e7d32;
-
-color:white;
-
-border-radius:50%;
-
-cursor:pointer;
-
+.item-total {
+    font-size: 19px;
+    color: #d32f2f;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-.qty span{
-
-margin:0 10px;
-
-font-size:18px;
-
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
 }
 
-.remove{
-
-background:red;
-
-color:white;
-
-border:none;
-
-padding:10px 15px;
-
-border-radius:8px;
-
-cursor:pointer;
-
+.qty button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #2e7d32;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
 }
 
-.summary{
-
-background:white;
-
-padding:20px;
-
-border-radius:12px;
-
-box-shadow:0 4px 10px rgba(0,0,0,.15);
-
+.qty span {
+    font-size: 16px;
 }
 
-.summary h2{
-
-color:#1b5e20;
-
-margin-bottom:15px;
-
+.remove {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.summary p{
-
-font-size:18px;
-
-margin:10px 0;
-
+.summary {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
 }
 
-.checkout{
-
-width:100%;
-
-margin-top:20px;
-
-padding:15px;
-
-background:#1b5e20;
-
-color:white;
-
-border:none;
-
-border-radius:10px;
-
-font-size:18px;
-
-cursor:pointer;
-
+.summary h2 {
+    color: #1b5e20;
+    margin-bottom: 15px;
 }
 
-.checkout:hover{
-
-background:#2e7d32;
-
+.summary p {
+    font-size: 18px;
+    margin: 10px 0;
 }
 
+.checkout {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background: #1b5e20;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.checkout:hover {
+    background: #2e7d32;
+}
+
+.empty-cart {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.continue {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 94%;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .cart-item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .details {
+        min-width: 150px;
+    }
+
+    .remove {
+        margin-left: auto;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
-<header>
-
-🛒 My Shopping Cart
-
-</header>
+<header>🛒 Green Market Cart</header>
 
 <div class="container">
 
-<div id="cartItems"></div>
+    <div id="cartItems"></div>
 
-<div class="summary">
+    <div class="summary">
+        <h2>Order Summary</h2>
 
-<h2>Order Summary</h2>
+        <p>Total Items: <b id="totalItems">0</b></p>
 
-<p>Total Items : <b id="totalItems">0</b></p>
+        <p>Total Price: <b id="totalPrice">₹0.00</b></p>
 
-<p>Total Price : <b id="totalPrice">₹0</b></p>
-
-<button class="checkout"
-onclick="location.href='checkout.html'">
-Proceed To Checkout
-</button>
-
-</div>
+        <button class="checkout" onclick="goToCheckout()">
+            Proceed To Checkout
+        </button>
+    </div>
 
 </div>
+
 <script>
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let cartItems = document.getElementById("cartItems");
+const cartItems = document.getElementById("cartItems");
 
-let total = 0;
-
-cart.forEach(item=>{
-
-total += Number(item.price);
-
-cartItems.innerHTML += `
-
-<div class="cart-item">
-
-<img src="${item.image}">
-
-<div class="details">
-
-<h3>${item.name}</h3>
-
-<p class="price">₹${item.price}</p>
-
-<div class="qty">
-
-<span>Qty : ${item.qty}</span>
-
-</div>
-
-</div>
-
-<button class="remove" onclick="removeItem('${item.name}')">
-Remove
-</button>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("totalItems").innerHTML = cart.length;
-
-document.getElementById("totalPrice").innerHTML = "₹" + total;
-
-function removeItem(name){
-
-cart = cart.filter(item=>item.name!==name);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-location.reload();
-
+function getPrice(item) {
+    // Supports numeric prices and strings such as "₹40"
+    return parseFloat(
+        String(item.price ?? "0").replace(/[^\d.]/g, "")
+    ) || 0;
 }
 
+function getQuantity(item) {
+    return Math.max(1, parseInt(item.qty, 10) || 1);
+}
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function renderCart() {
+    cartItems.innerHTML = "";
+
+    let total = 0;
+    let totalQuantity = 0;
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <div class="empty-cart">
+                <h2>Your cart is empty 🛒</h2>
+                <p>Add some fresh products to continue shopping.</p>
+                <a href="products.html" class="continue">
+                    Continue Shopping
+                </a>
+            </div>
+        `;
+    }
+
+    cart.forEach((item, index) => {
+        const price = getPrice(item);
+        const qty = getQuantity(item);
+        const itemTotal = price * qty;
+
+        total += itemTotal;
+        totalQuantity += qty;
+
+        const product = document.createElement("div");
+        product.className = "cart-item";
+
+        const image = document.createElement("img");
+        image.src = item.image || "";
+        image.alt = item.name || "Product";
+
+        const details = document.createElement("div");
+        details.className = "details";
+
+        const name = document.createElement("h3");
+        name.textContent = item.name || "Product";
+
+        const unitPrice = document.createElement("p");
+        unitPrice.className = "price";
+        unitPrice.textContent = "Price per unit: ₹" + price.toFixed(2);
+
+        const qtyBox = document.createElement("div");
+        qtyBox.className = "qty";
+
+        const minus = document.createElement("button");
+        minus.textContent = "−";
+        minus.setAttribute("aria-label", "Decrease quantity");
+
+        const qtyText = document.createElement("span");
+        qtyText.textContent = "Qty: " + qty;
+
+        const plus = document.createElement("button");
+        plus.textContent = "+";
+        plus.setAttribute("aria-label", "Increase quantity");
+
+        minus.addEventListener("click", function () {
+            if (getQuantity(cart[index]) > 1) {
+                cart[index].qty = getQuantity(cart[index]) - 1;
+                saveCart();
+                renderCart();
+            }
+        });
+
+        plus.addEventListener("click", function () {
+            cart[index].qty = getQuantity(cart[index]) + 1;
+            saveCart();
+            renderCart();
+        });
+
+        qtyBox.append(minus, qtyText, plus);
+
+        const amount = document.createElement("p");
+        amount.className = "item-total";
+        amount.textContent = "Amount: ₹" + itemTotal.toFixed(2);
+
+        details.append(name, unitPrice, qtyBox, amount);
+
+        const remove = document.createElement("button");
+        remove.className = "remove";
+        remove.textContent = "Remove";
+
+        remove.addEventListener("click", function () {
+            cart.splice(index, 1);
+            saveCart();
+            renderCart();
+        });
+
+        product.append(image, details, remove);
+        cartItems.appendChild(product);
+    });
+
+    document.getElementById("totalItems").textContent = totalQuantity;
+    document.getElementById("totalPrice").textContent =
+        "₹" + total.toFixed(2);
+
+    // Update cart badges if they exist on this page
+    document.querySelectorAll("#cartCount, #floatingCount")
+        .forEach(element => {
+            element.textContent = totalQuantity;
+        });
+}
+
+function goToCheckout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty! Please add products first.");
+        return;
+    }
+
+    location.href = "checkout.html";
+}
+
+renderCart();
 </script>
-<!-- ================= CHATBOT ================= -->
 
-<button id="chatbotBtn" class="chatbot-btn">💬</button>
-
-<div id="chatbot" class="chatbot">
-
-    <!-- Header -->
-    <div class="chat-header">
-
-        <div>
-            <h3>🤖 GreenBot</h3>
-            <span>Online • Green Market</span>
-        </div>
-
-        <button id="closeChat">✕</button>
-
-    </div>
-
-
-    <!-- Messages -->
-    <div id="chatMessages" class="chat-messages">
-
-        <div class="bot-message">
-            👋 Hello! Welcome to Green Market.<br>
-            How can I help you?
-        </div>
-
-    </div>
-
-
-    <!-- Quick Buttons -->
-    <div class="quick-buttons">
-
-        <button onclick="quickMessage('Products')">
-            🛍️ Products
-        </button>
-
-        <button onclick="quickMessage('Deals')">
-            🔥 Deals
-        </button>
-
-        <button onclick="quickMessage('Cart')">
-            🛒 Cart
-        </button>
-
-        <button onclick="quickMessage('Payment')">
-            💳 Payment
-        </button>
-
-    </div>
-
-
-    <!-- Input -->
-    <div class="chat-input">
-
-        <input
-            type="text"
-            id="userInput"
-            placeholder="Type your message..."
-        >
-
-        <button id="sendBtn">➤</button>
-
-    </div>
-
-</div>
-
-<!-- ================= END CHATBOT ================= -->
-
-
-<script src="chatbot.js"></script>
 </body>
-
 </html>
