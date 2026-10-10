@@ -225,7 +225,7 @@ Remember Me
 
 Don't have an account?
 
-<a href="register.html">Create Account</a>
+<a href="index.html">Create Account</a>
 
 </div>
 
@@ -256,26 +256,34 @@ showBtn.innerHTML="Show";
 
 // Login
 
-document.getElementById("loginBtn").onclick=function(){
+document.getElementById("loginBtn").onclick = function () {
+    const username = document.getElementById("username").value.trim();
+    const passwordValue = document.getElementById("password").value;
 
-let username=document.getElementById("username").value.trim();
-let passwordValue=document.getElementById("password").value.trim();
+    if (!username || !passwordValue) {
+        alert("Please enter Username and Password");
+        return;
+    }
 
-if(username=="" || passwordValue==""){
+    // Registered account तपासण्यासाठी
+    const savedUser = JSON.parse(
+        localStorage.getItem("greenMarketUser") || "null"
+    );
 
-alert("⚠️ Please enter Username and Password");
-return;
+    if (
+        !savedUser ||
+        (username.toLowerCase() !== savedUser.email.toLowerCase() &&
+         username.toLowerCase() !== savedUser.name.toLowerCase()) ||
+        passwordValue !== savedUser.password
+    ) {
+        alert("❌ Invalid username or password!");
+        return;
+    }
 
-}
+    localStorage.setItem("userName", savedUser.name);
 
-// Save User Name
-localStorage.setItem("userName",username);
-
-// Login Success
-alert("✅ Login Successful!\nWelcome "+username);
-
-window.location.href="home.html";
-
+    alert("✅ Login Successful! Welcome " + savedUser.name);
+    window.location.href = "home.html";
 };
 
 </script>

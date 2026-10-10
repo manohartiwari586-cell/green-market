@@ -121,6 +121,23 @@ button:hover {
     font-size: 14px;
     color: #555;
 }
+#locationBtn {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 2px solid #2e7d32;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#locationBtn:hover {
+    background: #c8e6c9;
+}
+
+#locationBtn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
 </style>
 </head>
 
@@ -142,7 +159,16 @@ button:hover {
 <input type="email" id="email">
 
 <label for="address">Delivery Address</label>
-<textarea id="address" required></textarea>
+
+<button type="button" id="locationBtn" onclick="getCurrentLocation()">
+    📍 Use My Current Location
+</button>
+
+<p id="locationStatus" style="margin-top:10px; color:#555; font-size:14px;">
+    Click the button to detect your location.
+</p>
+
+<textarea id="address" placeholder="House No., Street, Area..." required></textarea>
 
 <label for="city">City</label>
 <input type="text" id="city">
@@ -264,6 +290,110 @@ payment.addEventListener("change", function() {
     qrSection.style.display =
         this.value === "bharatpay" ? "block" : "none";
 });
+function getCurrentLocation() {
+    const status = document.getElementById("locationStatus");
+    const button = document.getElementById("locationBtn");
+
+    if (!navigator.geolocation) {
+        status.textContent = "Your browser does not support location.";
+        return;
+    }
+
+    button.disabled = true;
+    status.textContent = "📍 Detecting your location...";
+
+    navigator.geolocation.getCurrentPosition(
+        async function(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            alert(
+                  "Latitude: " + latitude +
+                  "\nLongitude: " + longitude
+           );
+            status.textContent = "Location found. Fetching address...";
+
+            try {
+                const url =
+                    "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+                    latitude + "&lon=" + longitude;
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("Address lookup failed");
+                }
+
+                const data = await response.json();
+                const a = data.address || {};
+
+                const addressParts = [
+                    a.house_number,
+                    a.road,
+                    a.neighbourhood || a.suburb,
+                    a.residential
+                ].filter(Boolean);
+
+                if (addressParts.length > 0) {
+                    document.getElementById("address").value =
+                        [...new Set(addressParts)].join(", ");
+                } else if (data.display_name) {
+                    document.getElementById("address").value =
+                        data.display_name;
+                }
+
+                const city =
+                    a.city || a.town || a.village ||
+                    a.municipality || a.county || "";
+
+                if (city) {
+                    document.getElementById("city").value = city;
+                }
+
+                const pin = document.getElementById("pin");
+                const postcode = a.postcode || "";
+
+                if (/^\d{6}$/.test(postcode)) {
+                    pin.value = postcode;
+                }
+
+                if (data.display_name) {
+                    status.textContent =
+                        "✅ Location detected. Please verify your address.";
+                } else {
+                    status.textContent =
+                        "Location detected, but address details were unavailable.";
+                }
+
+            } catch (error) {
+                status.textContent =
+                    "Could not fetch address. Please enter it manually.";
+            } finally {
+                button.disabled = false;
+            }
+        },
+
+        function(error) {
+            if (error.code === 1) {
+                status.textContent =
+                    "Location permission denied. Allow location access in your browser.";
+            } else if (error.code === 2) {
+                status.textContent =
+                    "Location unavailable. Please try again or enter manually.";
+            } else {
+                status.textContent =
+                    "Location request timed out. Please try again.";
+            }
+
+            button.disabled = false;
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 60000
+        }
+    );
+}
 </script>
 
 <!-- Chatbot -->

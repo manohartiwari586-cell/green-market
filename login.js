@@ -1,75 +1,49 @@
-// Show / Hide Password
-
-const password = document.getElementById("password");
+const passwordInput = document.getElementById("password");
 const showBtn = document.getElementById("showPassword");
 
+// Show / Hide Password
 showBtn.onclick = function () {
-
-    if (password.type === "password") {
-        password.type = "text";
-        showBtn.innerHTML = "Hide";
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        showBtn.innerText = "Hide";
     } else {
-        password.type = "password";
-        showBtn.innerHTML = "Show";
+        passwordInput.type = "password";
+        showBtn.innerText = "Show";
     }
-
 };
 
-// Login
-
+// Login Validation
 document.getElementById("loginBtn").onclick = function () {
+    const username = document.getElementById("username").value.trim();
+    const passwordValue = passwordInput.value;
 
-    let username = document.getElementById("username").value.trim();
-    let passwordValue = document.getElementById("password").value.trim();
-
-    if (username === "" || passwordValue === "") {
+    if (!username || !passwordValue) {
         alert("⚠️ Please enter Username and Password");
         return;
     }
 
-    // Registered user
-    let user = JSON.parse(localStorage.getItem("greenMarketUser"));
+    let user;
 
-    if (user === null) {
-        alert("❌ No account found. Please register first.");
-        window.location.href = "register.html";
+    try {
+        user = JSON.parse(localStorage.getItem("greenMarketUser") || "null");
+    } catch (error) {
+        user = null;
+    }
+
+    if (!user) {
+        alert("❌ Account not found. Please register first.");
         return;
     }
 
-    // Login Validation
-    if (
-        (username === user.name || username === user.email) &&
-        passwordValue === user.password
-    ) {
+    const usernameMatches =
+        username.toLowerCase() === user.name.toLowerCase() ||
+        username.toLowerCase() === user.email.toLowerCase();
 
+    if (usernameMatches && passwordValue === user.password) {
         localStorage.setItem("userName", user.name);
-
-        alert("✅ Login Successful!\nWelcome " + user.name);
-
+        alert("✅ Login Successful! Welcome " + user.name);
         window.location.href = "home.html";
-
     } else {
-
-        alert("❌ Invalid Username/Email or Password");
-
+        alert("❌ Invalid Username/Email or Password!");
     }
-
 };
-const form = document.getElementById("loginForm");
-
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    const savedUsername = localStorage.getItem("username");
-    const savedPassword = localStorage.getItem("password");
-
-    if (username === savedUsername && password === savedPassword) {
-        alert("Login Successful!");
-        window.location.href = "index.html";
-    } else {
-        alert("Invalid Username or Password!");
-    }
-});
