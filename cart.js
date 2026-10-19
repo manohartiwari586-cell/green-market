@@ -1,168 +1,133 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =========================
-    // CART
-    // =========================
+// =========================
+// CART - UNIQUE PRODUCTS
+// =========================
 
-    function getCart() {
-        return JSON.parse(localStorage.getItem("cart")) || [];
-    }
+function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
-    function updateCartCount() {
-        const cart = getCart();
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-        const totalCount = cart.reduce(function (total, item) {
-            return total + (Number(item.qty) || 1);
-        }, 0);
+function updateCartCount() {
+    const cart = getCart();
 
-        document.querySelectorAll("#cartCount, #floatingCount")
-            .forEach(function (element) {
-                element.innerText = totalCount;
-            });
-    }
+    const totalCount = cart.reduce(function (total, item) {
+        return total + (Number(item.qty) || 1);
+    }, 0);
 
-    const cartButtons = document.querySelectorAll(".cartBtn");
-
-    cartButtons.forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            const card = this.closest(".card, .product-card");
-
-            if (!card) {
-                alert("Product card not found!");
-                return;
-            }
-
-            const name =
-                this.dataset.name ||
-                card.querySelector("h3")?.innerText.trim();
-
-            const price =
-                this.dataset.price ||
-                card.querySelector(".offer-price, .price")?.innerText
-                    .replace(/[^\d.]/g, "");
-
-            const image =
-                this.dataset.image ||
-                card.querySelector("img")?.src ||
-                "";
-
-            if (!name) {
-                alert("Product name not found!");
-                return;
-            }
-
-            // Read selected quantity
-            const qtyBox = card.querySelector(
-                ".qty, .qty-dozen, .qty-litre, .qty-piece"
-            );
-
-            let qty = 1;
-
-            if (qtyBox) {
-                const quantityElement = qtyBox.children[1];
-
-                if (quantityElement) {
-                    qty = parseInt(quantityElement.innerText, 10) || 1;
-                }
-            }
-
-            let cart = getCart();
-
-            // Check whether this product already exists
-            const existingItem = cart.find(function (item) {
-                return item.name === name;
-            });
-
-            if (existingItem) {
-
-                existingItem.qty =
-                    (Number(existingItem.qty) || 1) + qty;
-
-            } else {
-
-                cart.push({
-                    name: name,
-                    price: price,
-                    image: image,
-                    qty: qty
-                });
-
-            }
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-
-            updateCartCount();
-
-            alert(
-                "✅ " + name +
-                " (" + qty + ") added to cart!"
-            );
-
+    document.querySelectorAll("#cartCount, #floatingCount")
+        .forEach(function (element) {
+            element.innerText = totalCount;
         });
+}
+
+const cartButtons = document.querySelectorAll(".cartBtn");
+
+cartButtons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        const card = this.closest(".card, .product-card");
+
+        if (!card) {
+            alert("Product card not found!");
+            return;
+        }
+
+        const name =
+            this.dataset.name ||
+            card.querySelector("h3")?.innerText.trim();
+
+        const price = parseFloat(
+            String(
+                this.dataset.price ||
+                card.querySelector(".offer-price")?.innerText ||
+                card.querySelector(".price")?.innerText ||
+                "0"
+            ).replace(/[^\d.]/g, "")
+        ) || 0;
+
+        const image =
+            card.querySelector("img")?.getAttribute("src") ||
+            this.dataset.image ||
+            "";
+
+        if (!name) {
+            alert("Product name not found!");
+            return;
+        }
+
+        // Get selected quantity
+        const qtyBox = card.querySelector(
+            ".qty, .qty-dozen, .qty-litre, .qty-piece"
+        );
+
+        let qty = 1;
+
+        if (qtyBox && qtyBox.children[1]) {
+            qty = parseInt(
+                qtyBox.children[1].innerText,
+                10
+            ) || 1;
+        }
+
+        let cart = getCart();
+
+        // Generate unique product ID using name, price and image
+        const productId = [
+            name.trim().toLowerCase(),
+            price,
+            image
+        ].join("|");
+
+        // Find the exact product, not just the same name
+        const existingItem = cart.find(function (item) {
+
+            const existingId = item.id || [
+                String(item.name || "").trim().toLowerCase(),
+                parseFloat(
+                    String(item.price || "0").replace(/[^\d.]/g, "")
+                ) || 0,
+                item.image || ""
+            ].join("|");
+
+            return existingId === productId;
+        });
+
+        if (existingItem) {
+
+            // Same product: increase quantity
+            existingItem.qty =
+                (Number(existingItem.qty) || 1) + qty;
+
+        } else {
+
+            // Different product: create a separate cart item
+            cart.push({
+                id: productId,
+                name: name,
+                price: price,
+                image: image,
+                qty: qty
+            });
+
+        }
+
+        saveCart(cart);
+        updateCartCount();
+
+        alert("✅ " + name + " added to cart!");
 
     });
 
-    // Display saved cart count when page opens
-    updateCartCount();
+});
 
-
-    // =========================
-    // QUANTITY CONTROLS
-    // =========================
-
-    function setupQuantity(selector, unit) {
-
-        const quantityBoxes = document.querySelectorAll(selector);
-
-        quantityBoxes.forEach(function (box) {
-
-            const minus = box.children[0];
-            const number = box.children[1];
-            const plus = box.children[2];
-
-            if (!minus || !number || !plus) {
-                return;
-            }
-
-            let qty = parseInt(number.innerText, 10) || 1;
-
-            function updateQuantity() {
-                number.innerText = qty + unit;
-            }
-
-            plus.addEventListener("click", function (event) {
-                event.preventDefault();
-
-                qty++;
-                updateQuantity();
-            });
-
-            minus.addEventListener("click", function (event) {
-                event.preventDefault();
-
-                if (qty > 1) {
-                    qty--;
-                    updateQuantity();
-                }
-            });
-
-            updateQuantity();
-
-        });
-
-    }
-
-    setupQuantity(".qty", " kg");
-    setupQuantity(".qty-dozen", " Dozen");
-    setupQuantity(".qty-litre", " L");
-    setupQuantity(".qty-piece", " Piece");
-
-
-    // =========================
-    // SEARCH
-    // =========================
+// Update cart count when the page opens
+updateCartCount();
 
     const search = document.getElementById("search");
 

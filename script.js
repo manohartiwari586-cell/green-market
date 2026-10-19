@@ -71,25 +71,36 @@ document.addEventListener("DOMContentLoaded", function () {
             let cart = getCart();
 
             // Check whether this product already exists
-            const existingItem = cart.find(function (item) {
-                return item.name === name;
-            });
+           // Create a unique identity for each product
+const productId = [
+    name.trim().toLowerCase(),
+    price,
+    image
+].join("|");
 
-            if (existingItem) {
+// Find only the exact same product
+const existingItem = cart.find(function (item) {
+    return item.id === productId;
+});
 
-                existingItem.qty =
-                    (Number(existingItem.qty) || 1) + qty;
+if (existingItem) {
 
-            } else {
+    // Increase quantity of the same product only
+    existingItem.qty =
+        (Number(existingItem.qty) || 1) + qty;
 
-                cart.push({
-                    name: name,
-                    price: price,
-                    image: image,
-                    qty: qty
-                });
+} else {
 
-            }
+    // Add a separate product with its own price and image
+    cart.push({
+        id: productId,
+        name: name,
+        price: price,
+        image: image,
+        qty: qty
+    });
+
+}
 
             localStorage.setItem("cart", JSON.stringify(cart));
 

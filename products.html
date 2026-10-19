@@ -89,7 +89,8 @@ placeholder="Search Vegetables, Fruits...">
 <button class="cartBtn"
 data-name="Tomato"
 data-price="40"
-data-image="images/tomato.png">
+data-image="images/tomato.png"
+data-unit="kg">
 
 🛒 Add to Cart
 
@@ -136,7 +137,8 @@ data-image="images/tomato.png">
 <button class="cartBtn"
 data-name="Potato"
 data-price="20"
-data-image="images/potato.png">
+data-image="images/potato.png"
+data-unit="kg">
 
 🛒 Add to Cart
 
@@ -183,7 +185,8 @@ data-image="images/potato.png">
 <button class="cartBtn"
 data-name="onion"
 data-price="35"
-data-image="images/onion.png">
+data-image="images/onion.png"
+data-unit="kg">
 
 🛒 Add to Cart
 
@@ -229,7 +232,8 @@ data-image="images/onion.png">
 <button class="cartBtn"
 data-name="Apple"
 data-price="120"
-data-image="images/apple.png">
+data-image="images/apple.png"
+data-unit="kg">
 
 🛒 Add to Cart
 
@@ -276,7 +280,8 @@ data-image="images/apple.png">
 <button class="cartBtn"
 data-name="Banana"
 data-price="60"
-data-image="images/banana.png">
+data-image="images/banana.png"
+data-unit="Dozen">
 
 🛒 Add to Cart
 
@@ -307,12 +312,75 @@ data-image="images/banana.png">
 </div>
 <button class="cartBtn"
 data-name="Milk"
-data-price="65"
-data-image="images/milk.png">
+data-price="30"
+data-image="images/milk.png"
+data-unit="L">
 🛒 Add to Cart
 </button>
 </div>
 
+<div class="card">
+<div class="badge best">Best Seller</div>
+<div class="wishlist" title="Add to Wishlist">♡</div>
+<img src="images/tomato2.png">
+
+<h3>Tomato</h3>
+<div class="price-box">
+<span class="offer-price">₹30</span>
+<span class="mrp">₹50</span>
+<span class="discount">40% OFF</span>
+</div>
+<p class="save">You Save ₹20</p>
+<div class="rating">
+<span class="stars">★★★★★</span>
+<span class="review">(10 Reviews)</span>
+</div>
+<p>⭐ 4.9 | Pure</p>
+<div class="qty">
+<button>-</button>
+<span>1 kg</span>
+<button>+</button>
+</div>
+<button class="cartBtn"
+data-name="Tomato"
+data-price="30"
+data-image="images/tomato2.png"
+data-unit="kg">
+🛒 Add to Cart
+</button>
+</div>
+
+<div class="card">
+<div class="badge best">Best Seller</div>
+<div class="wishlist" title="Add to Wishlist">♡</div>
+<img src="images/palak.png">
+
+<h3>palak</h3>
+<div class="price-box">
+<span class="offer-price">₹20</span>
+<span class="mrp">₹30</span>
+<span class="discount">430% OFF</span>
+</div>
+<p class="save">You Save ₹10</p>
+<div class="rating">
+<span class="stars">★★★★★</span>
+<span class="review">(33 Reviews)</span>
+</div>
+<p>⭐ 4.9 | Pure</p>
+<div class="qty-piece">
+<button>-</button>
+<span>1 </span>
+<button>+</button>
+</div>
+<button class="cartBtn"
+data-name="palak"
+data-price="20"
+data-image="images/palak.png"
+data-unit="piece">
+
+🛒 Add to Cart
+</button>
+</div>
 
 
 
@@ -391,10 +459,94 @@ data-image="images/milk.png">
 
 </div>
 
-<!-- ================= END CHATBOT ================= -->
 
 
-<script src="chatbot.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const searchQuery = (params.get("search") || "").trim().toLowerCase();
+
+    const productCards = document.querySelectorAll(".products .card");
+
+    // Products page वरील Search Box
+    const searchInput = document.querySelector('header input#search');
+
+    // Search Result Message
+    let resultMessage = document.getElementById("searchResult");
+
+    if (!resultMessage) {
+        resultMessage = document.createElement("h3");
+        resultMessage.id = "searchResult";
+        resultMessage.style.textAlign = "center";
+        resultMessage.style.margin = "20px";
+        document.querySelector(".products").before(resultMessage);
+    }
+
+    function filterProducts(query) {
+
+        const normalizedQuery = query.trim().toLowerCase();
+        let visibleCount = 0;
+
+        productCards.forEach(function (card) {
+
+            const productName =
+                (card.querySelector("h3")?.textContent || "").trim().toLowerCase();
+
+            const matches =
+                normalizedQuery === "" || productName.includes(normalizedQuery);
+
+            card.style.display = matches ? "" : "none";
+
+            if (matches) {
+                visibleCount++;
+            }
+
+        });
+
+        if (normalizedQuery === "") {
+            resultMessage.textContent = "";
+        } else if (visibleCount === 0) {
+            resultMessage.textContent =
+                '❌ No products found for "' + query.trim() + '"';
+        } else {
+            resultMessage.textContent =
+                "✅ " + visibleCount + " product(s) found";
+        }
+
+    }
+
+    // Home Page वरून Search केल्यास
+    if (searchQuery) {
+
+        if (searchInput) {
+            searchInput.value = params.get("search");
+        }
+
+        filterProducts(searchQuery);
+
+    }
+
+    // Products Page वरूनही Search करता येईल
+    if (searchInput) {
+
+        searchInput.addEventListener("input", function () {
+            filterProducts(this.value);
+        });
+
+        searchInput.addEventListener("keydown", function (event) {
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                filterProducts(this.value);
+            }
+
+        });
+
+    }
+
+});
+</script>
 <script src="chatbot.js"></script>
 </body>
 </html>
